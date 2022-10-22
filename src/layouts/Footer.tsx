@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="footer bg-dark py-2 fixed-bottom">
       <div className="container">
         <span className="text-info">
-          <span className="me-2">&copy;202</span>Jackson Furr
+          <span className="me-2">&copy;2022</span>Jackson Furr
         </span>
       </div>
     </footer>
