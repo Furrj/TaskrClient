@@ -1,21 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-interface IProps {
-  setLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
-  setMainPage: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Navbar: React.FC<IProps> = ({ setLoginPage, setMainPage }) => {
-  const openLoginPage = (): void => {
-    setMainPage(false);
-    setLoginPage(true);
-  };
-
-  const openMainPage = (): void => {
-    setLoginPage(false);
-    setMainPage(true);
-  };
-
+const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
@@ -34,16 +20,21 @@ const Navbar: React.FC<IProps> = ({ setLoginPage, setMainPage }) => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <button className="nav-link btn" onClick={openMainPage}>
+              <Link className="nav-link btn" to="/">
                 Home
-              </button>
+              </Link>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <button className="nav-link btn" onClick={openLoginPage}>
+              <Link className="nav-link btn" to="/login">
                 Login
-              </button>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link btn" to="/register">
+                Register
+              </Link>
             </li>
           </ul>
         </div>

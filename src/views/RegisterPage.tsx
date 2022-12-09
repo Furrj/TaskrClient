@@ -14,7 +14,7 @@ const initState: IState = {
   password: "",
 };
 
-const LoginPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
   const [userInput, setUserInuput] = useState<IState>(initState);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <CardWrapper>
-      <div className="card mt-3 loginCard">
+      <div className="card mt-3 regCard">
         <div>Username: </div>
         <input
           type="text"
@@ -50,4 +50,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
