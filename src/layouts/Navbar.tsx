@@ -60,7 +60,7 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn, userName
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link className="nav-link btn" to="/mytodos">
-                  My Todos
+                  {userName}'s Todos
                 </Link>
               </li>
               <li className="nav-item">

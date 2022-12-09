@@ -89,7 +89,12 @@ const LoginPage: React.FC<IProps> = ({
           className="form-control"
         />
         <br />
-
+        {invalidInfo && (
+          <div>
+            <div>Invalid Login Information</div>
+            <br />
+          </div>
+        )}
         <button className="btn btn-primary" onClick={login}>Login</button>
       </div>
     </CardWrapper>

@@ -54,7 +54,6 @@ const App: React.FC = () => {
               element={
                 <RegisterPage
                   setLoggedIn={setLoggedIn}
-                  userInfo={userInfo}
                   setUserInfo={setUserInfo}
                 />
               }

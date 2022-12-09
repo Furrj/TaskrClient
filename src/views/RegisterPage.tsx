@@ -20,13 +20,11 @@ const initState: IState = {
 //PROPS
 interface IProps {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  userInfo: IUser;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
 const RegisterPage: React.FC<IProps> = ({
   setLoggedIn,
-  userInfo,
   setUserInfo,
 }) => {
   //STATE
@@ -85,6 +83,12 @@ const RegisterPage: React.FC<IProps> = ({
           className="form-control"
         />
         <br />
+        {taken && (
+          <div>
+            <div>Username Taken</div>
+            <br />
+          </div>
+        )}
         <button className="btn btn-primary" onClick={register}>
           Register
         </button>
