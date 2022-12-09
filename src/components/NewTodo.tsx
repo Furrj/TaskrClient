@@ -3,6 +3,7 @@ import React, { useState } from "react";
 interface IProps {
   toggleAdding: () => void;
   renderAgain: () => void;
+  userID: string;
 }
 
 interface IState {
@@ -10,12 +11,18 @@ interface IState {
   text: string;
 }
 
+interface ITodo {
+  title: string;
+  text: string;
+  user: string;
+}
+
 const initState = {
   title: "",
   text: "",
 };
 
-const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding }) => {
+const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
   const [info, setInfo] = useState<IState>(initState);
 
   const inputHandler = (
@@ -33,9 +40,10 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding }) => {
   };
 
   const sendPost = async (): Promise<any> => {
-    const newTodo = {
+    const newTodo: ITodo = {
       title: info.title,
       text: info.text,
+      user: userID,
     };
 
     try {

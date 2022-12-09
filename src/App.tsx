@@ -32,7 +32,7 @@ const App: React.FC = () => {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<MainPage userId={userInfo.id} />} />
           <Route
             path="/login"
             element={

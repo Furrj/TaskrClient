@@ -3,13 +3,17 @@ import AddTodo from "../components/AddToDo";
 import Listings from "../components/Listings";
 import NewTodo from "../components/NewTodo";
 
+interface IProps {
+  userId: string;
+}
+
 export interface ITodo {
   _id: string;
   title: string;
   text: string;
 }
 
-const MainPage: React.FC = () => {
+const MainPage: React.FC<IProps> = ({ userId }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [addingTodo, setAddingTodo] = useState<boolean>(false);
   const [rerender, setRerender] = useState<boolean>(false);
@@ -40,7 +44,11 @@ const MainPage: React.FC = () => {
   return (
     <div className="allTodosCont mt-3">
       {addingTodo ? (
-        <NewTodo toggleAdding={toggleAdding} renderAgain={renderAgain} />
+        <NewTodo
+          toggleAdding={toggleAdding}
+          renderAgain={renderAgain}
+          userID={userId}
+        />
       ) : (
         <AddTodo click={toggleAdding} />
       )}
