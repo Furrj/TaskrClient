@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, NavigateFunction } from "react-router-dom";
+
+//COMPS
 import AddTodo from "../components/AddToDo";
 import Listings from "../components/Listings";
 import NewTodo from "../components/NewTodo";
@@ -18,7 +21,12 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
   const [addingTodo, setAddingTodo] = useState<boolean>(false);
   const [rerender, setRerender] = useState<boolean>(false);
 
+  const navigate: NavigateFunction = useNavigate();
+
   useEffect(() => {
+    if (!userId) {
+      return navigate("/login");
+    }
     fetchData();
     console.log("UseEffect Triggered");
   }, [rerender]);

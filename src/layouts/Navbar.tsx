@@ -7,12 +7,13 @@ import { initState } from "../App";
 import { IUser } from "../App";
 
 interface IProps {
+  userName: string;
   loggedIn: boolean;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
+const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn, userName }) => {
   const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     setLoggedIn(false);
     setUserInfo(initState);
