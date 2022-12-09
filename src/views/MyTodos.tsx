@@ -13,7 +13,7 @@ export interface ITodo {
   text: string;
 }
 
-const MainPage: React.FC<IProps> = ({ userId }) => {
+const MyTodos: React.FC<IProps> = ({ userId }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [addingTodo, setAddingTodo] = useState<boolean>(false);
   const [rerender, setRerender] = useState<boolean>(false);
@@ -57,4 +57,4 @@ const MainPage: React.FC<IProps> = ({ userId }) => {
   );
 };
 
-export default MainPage;
+export default MyTodos;

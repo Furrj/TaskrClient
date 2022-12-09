@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { ITodo } from "../views/MainPage";
+import { ITodo } from "../views/MyTodos";
 
 interface IProps {
   todo: ITodo;

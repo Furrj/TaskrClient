@@ -6,9 +6,10 @@ import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
 
 //VIEWS
-import MainPage from "./views/MainPage";
 import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
+import HomePage from "./views/HomePage";
+import MyTodos from "./views/MyTodos";
 
 //STATE
 export type IUser = {
@@ -17,7 +18,7 @@ export type IUser = {
   valid: boolean;
 };
 
-const initState = {
+export const initState = {
   username: "",
   id: "",
   valid: false,
@@ -30,9 +31,13 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div>
-        <Navbar />
+        <Navbar
+          loggedIn={loggedIn}
+          setUserInfo={setUserInfo}
+          setLoggedIn={setLoggedIn}
+        />
         <Routes>
-          <Route path="/" element={<MainPage userId={userInfo.id} />} />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/login"
             element={
@@ -53,6 +58,7 @@ const App: React.FC = () => {
               />
             }
           />
+          <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
         </Routes>
         <Footer />
       </div>

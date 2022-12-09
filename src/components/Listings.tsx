@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { ITodo } from "../views/MainPage";
+import { ITodo } from "../views/MyTodos";
 import Todo from "./Todo";
 
 interface IProps {
