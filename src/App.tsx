@@ -32,36 +32,37 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div>
         <Navbar
+          userName={userInfo.username}
           loggedIn={loggedIn}
           setUserInfo={setUserInfo}
           setLoggedIn={setLoggedIn}
         />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/login"
-            element={
-              <LoginPage
-                setLoggedIn={setLoggedIn}
-                userInfo={userInfo}
-                setUserInfo={setUserInfo}
-              />
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <RegisterPage
-                setLoggedIn={setLoggedIn}
-                userInfo={userInfo}
-                setUserInfo={setUserInfo}
-              />
-            }
-          />
-          <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/login"
+              element={
+                <LoginPage
+                  setLoggedIn={setLoggedIn}
+                  userInfo={userInfo}
+                  setUserInfo={setUserInfo}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RegisterPage
+                  setLoggedIn={setLoggedIn}
+                  userInfo={userInfo}
+                  setUserInfo={setUserInfo}
+                />
+              }
+            />
+            <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </BrowserRouter>
   );
 };
