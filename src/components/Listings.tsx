@@ -6,12 +6,20 @@ import Todo from "./Todo";
 interface IProps {
   data: ITodo[];
   renderAgain: () => void;
+  userID: string;
 }
 
-const Listings: React.FC<IProps> = ({ data, renderAgain }) => {
+const Listings: React.FC<IProps> = ({ data, renderAgain, userID }) => {
   const createTodos = (): JSX.Element[] => {
     return data.map((el) => {
-      return <Todo key={el._id} todo={el} renderAgain={renderAgain} />;
+      return (
+        <Todo
+          key={el._id}
+          todo={el}
+          renderAgain={renderAgain}
+          userID={userID}
+        />
+      );
     });
   };
 

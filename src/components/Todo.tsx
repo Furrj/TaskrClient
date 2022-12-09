@@ -5,6 +5,7 @@ import { ITodo } from "../views/MyTodos";
 interface IProps {
   todo: ITodo;
   renderAgain: () => void;
+  userID: string;
 }
 
 interface IState {
@@ -12,7 +13,7 @@ interface IState {
   text: string;
 }
 
-const Todo: React.FC<IProps> = ({ todo, renderAgain }) => {
+const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [info, setInfo] = useState<IState>({
     title: todo.title,
@@ -30,14 +31,14 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain }) => {
 
   const sendPut = async (data: object): Promise<any> => {
     try {
-      const res = await fetch("http://localhost:5000/api", {
+      const res = await fetch("http://localhost:5000/api/newTodo", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-      return res.json();
+      await res.json();
     } catch (e) {
       console.log(`Error: ${e}`);
     }
@@ -45,8 +46,12 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain }) => {
 
   const sendDelete = async (): Promise<void> => {
     try {
-      const res = await fetch(`http://localhost:5000/api/${todo._id}`, {
-        method: "DELETE",
+      const res = await fetch("http://localhost:5000/api/delete", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ todoID: todo._id, userID }),
       });
       await res.json();
       renderAgain();
@@ -64,7 +69,7 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain }) => {
         title: info.title,
         text: info.text,
       };
-      const res = await sendPut(sendData);
+      await sendPut(sendData);
     }
     setEditMode(!editMode);
   };

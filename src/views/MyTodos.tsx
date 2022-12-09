@@ -25,9 +25,16 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
 
   const fetchData = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api");
+      const res = await fetch("http://localhost:5000/api", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: userId }),
+      });
       const rawData = await res.json();
       setTodos(rawData);
+      console.log(rawData);
     } catch (e) {
       console.log(`Error: ${e}`);
     }
@@ -52,7 +59,7 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
       ) : (
         <AddTodo click={toggleAdding} />
       )}
-      <Listings data={todos} renderAgain={renderAgain} />
+      <Listings data={todos} renderAgain={renderAgain} userID={userId} />
     </div>
   );
 };

@@ -33,7 +33,7 @@ const LoginPage: React.FC<IProps> = ({
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [invalidInfo, setInvalidInfo] = useState<boolean>(false);
 
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   //Helper Functions
   const login = async (
@@ -55,7 +55,7 @@ const LoginPage: React.FC<IProps> = ({
       setLoggedIn(true);
       setUserInfo(data);
       setInvalidInfo(false);
-      return navigate("/");
+      return navigate("/mytodos");
     } else {
       setInvalidInfo(true);
     }
