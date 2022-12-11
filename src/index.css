@@ -64,6 +64,10 @@ body {
   font-size: 500%;
 }
 
+.form-control {
+  text-align: center;
+}
+
 @keyframes slideIn {
   0% {
     transform: translateX(-250%);

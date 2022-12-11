@@ -9,17 +9,20 @@ interface IProps {
 interface IState {
   title: string;
   text: string;
+  due: string;
 }
 
 interface ITodo {
   title: string;
   text: string;
+  due: string;
   user: string;
 }
 
 const initState = {
   title: "",
   text: "",
+  due: "",
 };
 
 const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
@@ -43,6 +46,7 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
     const newTodo: ITodo = {
       title: info.title,
       text: info.text,
+      due: info.due,
       user: userID,
     };
 
@@ -74,6 +78,7 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
             value={info.title}
             type="text"
             name="title"
+            placeholder="Title"
           />
         </h3>
         <hr />
@@ -83,8 +88,17 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
             onChange={inputHandler}
             value={info.text}
             name="text"
+            placeholder="Tasks"
           />
         </div>
+        <hr />
+        <input
+          type="date"
+          name="due"
+          id="due"
+          onChange={inputHandler}
+          value={info.due}
+        />
         <hr />
         <div className="card-text">
           <button onClick={onAdd} className="btn btn-info me-3 text-light">
