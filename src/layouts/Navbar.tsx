@@ -59,8 +59,8 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn, userName
           {loggedIn && (
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link btn" to="/mytodos">
-                  {userName}'s Todos
+                <Link className="nav-link btn text-info" to="/dashboard">
+                  Dashboard
                 </Link>
               </li>
               <li className="nav-item">

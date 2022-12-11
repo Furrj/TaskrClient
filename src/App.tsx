@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //UI
-  import Footer from "./layouts/Footer";
+import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
 
 //VIEWS
@@ -10,6 +10,7 @@ import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
 import MyTodos from "./views/MyTodos";
+import Dashboard from "./views/Dashboard";
 
 //STATE
 export type IUser = {
@@ -38,27 +39,28 @@ const App: React.FC = () => {
           setLoggedIn={setLoggedIn}
         />
         <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/login"
-              element={
-                <LoginPage
-                  setLoggedIn={setLoggedIn}
-                  userInfo={userInfo}
-                  setUserInfo={setUserInfo}
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RegisterPage
-                  setLoggedIn={setLoggedIn}
-                  setUserInfo={setUserInfo}
-                />
-              }
-            />
-            <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                setLoggedIn={setLoggedIn}
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RegisterPage
+                setLoggedIn={setLoggedIn}
+                setUserInfo={setUserInfo}
+              />
+            }
+          />
+          <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
+          <Route path="dashboard" element={<Dashboard userInfo={userInfo} />} />
         </Routes>
       </div>
       <Footer />

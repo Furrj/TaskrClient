@@ -27,11 +27,7 @@ body {
   height: 50px;
 }
 
-.regCard {
-  background-color: aquamarine;
-}
-
-.loginCard {
+.card {
   background-color: aquamarine;
 }
 
