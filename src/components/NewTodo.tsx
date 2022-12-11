@@ -16,6 +16,7 @@ interface ITodo {
   title: string;
   text: string;
   due: string;
+  completed: boolean;
   user: string;
 }
 
@@ -23,6 +24,7 @@ const initState = {
   title: "",
   text: "",
   due: "",
+  completed: false,
 };
 
 const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
@@ -47,11 +49,12 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
       title: info.title,
       text: info.text,
       due: info.due,
+      completed: false,
       user: userID,
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api", {
+      const res = await fetch("http://localhost:5000/api/newTodo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
