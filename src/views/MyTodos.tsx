@@ -14,6 +14,8 @@ export interface ITodo {
   _id: string;
   title: string;
   text: string;
+  due: string;
+  completed: boolean;
 }
 
 const MyTodos: React.FC<IProps> = ({ userId }) => {

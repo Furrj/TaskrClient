@@ -11,6 +11,8 @@ interface IProps {
 interface IState {
   title: string;
   text: string;
+  due: string;
+  completed: boolean;
 }
 
 const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
@@ -18,6 +20,8 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
   const [info, setInfo] = useState<IState>({
     title: todo.title,
     text: todo.text,
+    due: todo.due,
+    completed: todo.completed,
   });
 
   const inputHandler = (
@@ -68,6 +72,7 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
         id: todo._id,
         title: info.title,
         text: info.text,
+        due: info.due
       };
       await sendPut(sendData);
     }
@@ -109,6 +114,20 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
             ></textarea>
           ) : (
             info.text
+          )}
+        </div>
+        <hr />
+        <div className="card-text">
+          {editMode ? (
+            <input
+              type="date"
+              name="due"
+              id="due"
+              onChange={inputHandler}
+              value={info.due}
+            />
+          ) : (
+            "Due by:" + " " + info.due
           )}
         </div>
         <hr />

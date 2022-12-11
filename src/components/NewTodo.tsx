@@ -95,6 +95,7 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
           />
         </div>
         <hr />
+        <label htmlFor="due">Due By: </label>{" "}
         <input
           type="date"
           name="due"

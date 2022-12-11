@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //UI
-import Footer from "./layouts/Footer";
+  import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
 
 //VIEWS
