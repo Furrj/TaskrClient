@@ -51,7 +51,7 @@ const RegisterPage: React.FC<IProps> = ({
       setTaken(false);
       setLoggedIn(true);
       setUserInfo(data);
-      return navigate("/");
+      return navigate("/mytodos");
     }
   };
 

@@ -72,7 +72,7 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
         id: todo._id,
         title: info.title,
         text: info.text,
-        due: info.due
+        due: info.due,
       };
       await sendPut(sendData);
     }
@@ -132,6 +132,7 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
         </div>
         <hr />
         <div className="card-text">
+          <button className="btn btn-success me-3 text-light">Completed</button>
           <button className="btn btn-info me-3 text-light" onClick={toggleEdit}>
             {editMode ? "Submit" : "Edit"}
           </button>

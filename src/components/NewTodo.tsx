@@ -91,7 +91,7 @@ const NewTodo: React.FC<IProps> = ({ renderAgain, toggleAdding, userID }) => {
             onChange={inputHandler}
             value={info.text}
             name="text"
-            placeholder="Tasks"
+            placeholder="Task"
           />
         </div>
         <hr />

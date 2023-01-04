@@ -45,7 +45,7 @@ const Dashboard: React.FC<IProps> = ({ userInfo }) => {
       <div className="card-title mt-3">{userInfo.username}'s Dashboard</div>
       <hr />
       <div className="card-body">Active Tasks: {uncompleted}</div>
-      <Link to="/mytodos" className="btn btn-primary">View</Link>
+      <Link to="/mytodos"><button className="btn btn-primary">View</button></Link>
       <hr />
       <div className="card-body">Completed Tasks:</div>
     </div>
