@@ -22,7 +22,7 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn, userName
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
-        <div className="navbar-brand text-info">ToDo 2.0</div>
+        <div className="navbar-brand text-info">Taskr</div>
         <button
           className="navbar-toggler"
           type="button"
