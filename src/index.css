@@ -74,26 +74,30 @@ body {
 }
 
 #homeCont {
-  position: relative;
+  text-align: center;
   height: 100vh;
 }
 
+#homeSpacer {
+  height: 30vh;
+}
+
 #homeCard1 {
-  position: absolute;
-  bottom: 60%;
-  left: 32%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(0, 255, 153);
   animation: 1s ease-out 0s 1 slideIn;
 }
 
 #homeCard2 {
-  position: absolute;
-  bottom: 40%;
-  left: 25%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(0, 255, 153);
   animation: 2s ease-out 0s 1 slideIn;
+}
+
+#homeCard3 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(0, 255, 153);
+  animation: 3s ease-out 0s 1 slideIn;
 }
 
 @media only screen and (max-width: 450px) {
