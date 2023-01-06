@@ -12,13 +12,14 @@ interface IProps {
 
 const Dashboard: React.FC<IProps> = ({ userInfo }) => {
   const [uncompleted, setUncompleted] = useState<number>(0);
+  const [completed, setCompleted] = useState<number>(0);
 
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
     if (userInfo.valid === false) {
       return navigate("/login");
-    } 
+    }
     fetchData();
     console.log("UseEffect Triggered");
   }, []);
@@ -33,23 +34,40 @@ const Dashboard: React.FC<IProps> = ({ userInfo }) => {
         body: JSON.stringify({ id: userInfo.id }),
       });
       const rawData = await res.json();
-      console.log(rawData);
-      setUncompleted(rawData.length);
+      const completedTodos = [];
+      const uncompletedTodos = [];
+      for (let todo of rawData) {
+        if (todo.completed === true) {
+          completedTodos.push(todo);
+        } else {
+          uncompletedTodos.push(todo);
+        }
+      }
+      setUncompleted(uncompletedTodos.length);
+      setCompleted(completedTodos.length);
     } catch (e) {
       console.log(`Error: ${e}`);
     }
   };
 
-  return <CardWrapper>
-    <div className="card mt-3">
-      <div className="card-title mt-3">{userInfo.username}'s Dashboard</div>
-      <hr />
-      <div className="card-body">Active Tasks: {uncompleted}</div>
-      <Link to="/mytodos"><button className="btn btn-primary">View</button></Link>
-      <hr />
-      <div className="card-body">Completed Tasks:</div>
-    </div>
-  </CardWrapper>;
+  return (
+    <CardWrapper>
+      <div className="card mt-3">
+        <div className="card-title mt-3">{userInfo.username}'s Dashboard</div>
+        <hr />
+        <div className="card-body">Active Tasks: {uncompleted}</div>
+        <Link to="/mytodos">
+          <button className="btn btn-primary">View</button>
+        </Link>
+        <hr />
+        <div className="card-body">Completed Tasks: {completed}</div>
+        <Link to="/mytodos">
+          <button className="btn btn-primary">View</button>
+        </Link>
+        <br />
+      </div>
+    </CardWrapper>
+  );
 };
 
 export default Dashboard;

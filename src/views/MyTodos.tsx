@@ -50,7 +50,6 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
         }
       }
       setTodos(filteredData);
-      console.log(rawData);
     } catch (e) {
       console.log(`Error: ${e}`);
     }
