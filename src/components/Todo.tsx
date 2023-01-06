@@ -64,6 +64,22 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
     }
   };
 
+  const markCompleted = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/markComplete", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: todo._id }),
+      });
+      await res.json();
+      renderAgain();
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
+  };
+
   const toggleEdit = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
@@ -127,12 +143,17 @@ const Todo: React.FC<IProps> = ({ todo, renderAgain, userID }) => {
               value={info.due}
             />
           ) : (
-            "Due by:" + " " + info.due
+            `Due by: ${" "} ${info.due}`
           )}
         </div>
         <hr />
         <div className="card-text">
-          <button className="btn btn-success me-3 text-light">Completed</button>
+          <button
+            className="btn btn-success me-3 text-light"
+            onClick={markCompleted}
+          >
+            Completed
+          </button>
           <button className="btn btn-info me-3 text-light" onClick={toggleEdit}>
             {editMode ? "Submit" : "Edit"}
           </button>

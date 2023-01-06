@@ -56,7 +56,7 @@ body {
 }
 
 .addTodo h1 {
-  color: rgb(1, 110, 1);
+  color: green;
   font-size: 500%;
 }
 

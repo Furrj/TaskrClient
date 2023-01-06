@@ -43,7 +43,13 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
         body: JSON.stringify({ id: userId }),
       });
       const rawData = await res.json();
-      setTodos(rawData);
+      const filteredData: ITodo[] = [];
+      for (let todo of rawData) {
+        if (todo.completed === false) {
+          filteredData.push(todo);
+        }
+      }
+      setTodos(filteredData);
       console.log(rawData);
     } catch (e) {
       console.log(`Error: ${e}`);
