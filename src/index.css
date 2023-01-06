@@ -64,6 +64,26 @@ body {
   text-align: center;
 }
 
+#regPasswordBox {
+  position: relative;
+}
+
+#eye1 {
+  position: absolute;
+  top: 21%;
+  right: 2%;
+  cursor: pointer;
+  color: black;
+}
+
+#eye2 {
+  position: absolute;
+  top: 70%;
+  right: 2%;
+  cursor: pointer;
+  color: black;
+}
+
 @keyframes slideIn {
   0% {
     transform: translateX(-250%);

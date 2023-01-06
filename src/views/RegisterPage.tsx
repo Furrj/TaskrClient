@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 
 //LAYOUTS
@@ -10,11 +10,13 @@ import { IUser } from "../App";
 interface IState {
   username: string;
   password: string;
+  password2: string;
 }
 
 const initState: IState = {
   username: "",
   password: "",
+  password2: "",
 };
 
 //PROPS
@@ -23,15 +25,24 @@ interface IProps {
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
-const RegisterPage: React.FC<IProps> = ({
-  setLoggedIn,
-  setUserInfo,
-}) => {
+const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
   //STATE
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [taken, setTaken] = useState<boolean>(false);
+  const [invalidPasswords, setInvalidPasswords] = useState<boolean>(false);
 
   const navigate: NavigateFunction = useNavigate();
+
+  useEffect(() => {
+    if (
+      userInput.password !== userInput.password2 &&
+      userInput.password2 !== ""
+    ) {
+      setInvalidPasswords(true);
+    } else if (userInput.password === userInput.password2) {
+      setInvalidPasswords(false);
+    }
+  }, [userInput]);
 
   //HELPER FUNCTIONS
   const register = async (
@@ -62,6 +73,40 @@ const RegisterPage: React.FC<IProps> = ({
     });
   };
 
+  const togglePassword1 = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const password1 = document.querySelector("#password1");
+    if (password1) {
+      const type =
+        password1.getAttribute("type") === "password" ? "text" : "password";
+      password1.setAttribute("type", type);
+    }
+    const eye1 = document.querySelector("#eye1");
+    if (eye1) {
+      if (eye1.classList.contains("fa-eye-slash")) {
+        eye1.classList.remove("fa-eye-slash");
+      } else {
+        eye1.classList.toggle("fa-eye-slash");
+      }
+    }
+  };
+
+  const togglePassword2 = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const password2 = document.querySelector("#password2");
+    if (password2) {
+      const type =
+        password2.getAttribute("type") === "password" ? "text" : "password";
+      password2.setAttribute("type", type);
+    }
+    const eye2 = document.querySelector("#eye2");
+    if (eye2) {
+      if (eye2.classList.contains("fa-eye-slash")) {
+        eye2.classList.remove("fa-eye-slash");
+      } else {
+        eye2.classList.toggle("fa-eye-slash");
+      }
+    }
+  };
+
   return (
     <CardWrapper>
       <div className="card mt-3 regCard">
@@ -74,18 +119,47 @@ const RegisterPage: React.FC<IProps> = ({
           className="form-control"
         />
         <br />
-        <div>Password:</div>
-        <input
-          type="text"
-          name="password"
-          value={userInput.password}
-          onChange={inputHandler}
-          className="form-control"
-        />
-        <br />
         {taken && (
           <div>
             <div>Username Taken</div>
+            <br />
+          </div>
+        )}
+        <div id="regPasswordBox">
+          <div>Password:</div>
+          <input
+            type="password"
+            name="password"
+            id="password1"
+            value={userInput.password}
+            onChange={inputHandler}
+            className="form-control"
+          />
+          <i
+            className={`fa-solid fa-eye fa-eye-slash`}
+            id="eye1"
+            onClick={togglePassword1}
+          />
+          <br />
+          <div>Confirm Password:</div>
+          <input
+            type="password"
+            name="password2"
+            id="password2"
+            value={userInput.password2}
+            onChange={inputHandler}
+            className="form-control"
+          />
+          <i
+            className={`fa-solid fa-eye fa-eye-slash`}
+            id="eye2"
+            onClick={togglePassword2}
+          />
+          <br />
+        </div>
+        {invalidPasswords && (
+          <div>
+            <div>Passwords must match</div>
             <br />
           </div>
         )}
