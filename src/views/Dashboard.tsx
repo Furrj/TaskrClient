@@ -61,7 +61,7 @@ const Dashboard: React.FC<IProps> = ({ userInfo }) => {
         </Link>
         <hr />
         <div className="card-body">Completed Tasks: {completed}</div>
-        <Link to="/mytodos">
+        <Link to="/mycompletedtodos">
           <button className="btn btn-primary">View</button>
         </Link>
         <br />

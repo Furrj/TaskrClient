@@ -10,6 +10,7 @@ import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
 import MyTodos from "./views/MyTodos";
+import MyCompletedTodos from "./views/MyCompletedTodos";
 import Dashboard from "./views/Dashboard";
 
 //STATE
@@ -60,6 +61,10 @@ const App: React.FC = () => {
             }
           />
           <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
+          <Route
+            path="mycompletedtodos"
+            element={<MyCompletedTodos userID={userInfo.id} />}
+          />
           <Route path="dashboard" element={<Dashboard userInfo={userInfo} />} />
         </Routes>
       </div>
