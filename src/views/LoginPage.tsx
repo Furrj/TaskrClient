@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //LAYOUTS
 import CardWrapper from "../layouts/CardWrapper";
@@ -40,7 +41,7 @@ const LoginPage: React.FC<IProps> = ({
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<any> => {
     //FETCH REQ
-    const res = await fetch("http://localhost:5000/login", {
+    const res = await fetch(`${reqRoutes()}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

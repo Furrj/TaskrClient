@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //COMPS
 import Listings from "../components/Listings";
@@ -20,7 +21,7 @@ const MyCompletedTodos: React.FC<IProps> = ({ userID }) => {
   //HELPER FUNCTIONS
   const fetchData = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api", {
+      const res = await fetch(`${reqRoutes()}/api`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

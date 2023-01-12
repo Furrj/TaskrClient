@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavigateFunction, useNavigate, Link } from "react-router-dom";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //COMPS
 import CardWrapper from "../layouts/CardWrapper";
@@ -26,7 +27,7 @@ const Dashboard: React.FC<IProps> = ({ userInfo }) => {
 
   const fetchData = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api", {
+      const res = await fetch(`${reqRoutes()}/api`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

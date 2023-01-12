@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //COMPS
 import AddTodo from "../components/AddToDo";
@@ -35,7 +36,7 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
 
   const fetchData = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api", {
+      const res = await fetch(`${reqRoutes()}/api`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

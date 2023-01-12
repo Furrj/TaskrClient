@@ -6,6 +6,7 @@ import CardWrapper from "../layouts/CardWrapper";
 
 //TS
 import { IUser } from "../App";
+import { reqRoutes } from "../utils/reqRoutes";
 
 interface IState {
   username: string;
@@ -48,7 +49,7 @@ const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
   const register = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
-    const res = await fetch("http://localhost:5000/register", {
+    const res = await fetch(`${reqRoutes()}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
