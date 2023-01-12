@@ -20,13 +20,11 @@ const initState: IState = {
 
 //PROPS
 interface IProps {
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   userInfo: IUser;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
 const LoginPage: React.FC<IProps> = ({
-  setLoggedIn,
   userInfo,
   setUserInfo,
 }) => {
@@ -53,7 +51,6 @@ const LoginPage: React.FC<IProps> = ({
     const data: IUser = await res.json();
     console.log(data);
     if (data.valid) {
-      setLoggedIn(true);
       setUserInfo(data);
       setInvalidInfo(false);
       return navigate("/dashboard");

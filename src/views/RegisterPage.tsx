@@ -22,11 +22,10 @@ const initState: IState = {
 
 //PROPS
 interface IProps {
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
-const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
+const RegisterPage: React.FC<IProps> = ({ setUserInfo }) => {
   //STATE
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [taken, setTaken] = useState<boolean>(false);
@@ -61,7 +60,6 @@ const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
       setTaken(true);
     } else {
       setTaken(false);
-      setLoggedIn(true);
       setUserInfo(data);
       return navigate("/mytodos");
     }

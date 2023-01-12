@@ -18,9 +18,6 @@ const Dashboard: React.FC<IProps> = ({ userInfo }) => {
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
-    if (userInfo.valid === false) {
-      return navigate("/login");
-    }
     fetchData();
     console.log("UseEffect Triggered");
   }, []);

@@ -27,9 +27,6 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
-    if (!userId) {
-      return navigate("/login");
-    }
     fetchData();
     console.log("UseEffect Triggered");
   }, [rerender]);

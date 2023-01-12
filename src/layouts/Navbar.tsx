@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { initState } from "../App";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //TS
 import { IUser } from "../App";
@@ -10,13 +10,20 @@ interface IProps {
   userName: string;
   loggedIn: boolean;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn, userName }) => {
-  const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-    setLoggedIn(false);
+const Navbar: React.FC<IProps> = ({
+  loggedIn,
+  setUserInfo,
+  userName,
+}) => {
+  const logout = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
     setUserInfo(initState);
+
+    const req = await fetch(`${reqRoutes()}/logout`, {
+      credentials: "include",
+    });
+    await req.json();
   };
 
   return (
