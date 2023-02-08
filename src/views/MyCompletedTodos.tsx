@@ -18,7 +18,7 @@ const MyCompletedTodos: React.FC<IProps> = ({ userID }) => {
     fetchData();
   }, []);
 
-  //HELPER FUNCTIONS
+  //GET COMPLETED TODOS
   const fetchData = async (): Promise<void> => {
     try {
       const res = await fetch(`${reqRoutes()}/api`, {

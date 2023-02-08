@@ -36,37 +36,58 @@ const LoginPage: React.FC<IProps> = ({
 
   const navigate: NavigateFunction = useNavigate();
 
-  //Helper Functions
+  //LOGIN FUNCTION
   const login = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<any> => {
-    //FETCH REQ
-    const res = await fetch(`${reqRoutes()}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInput),
-    });
+    try {
+      const res = await fetch(`${reqRoutes()}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInput),
+      });
 
-    //RES
-    const data: IUser = await res.json();
-    console.log(data);
-    if (data.valid) {
-      setLoggedIn(true);
-      setUserInfo(data);
-      setInvalidInfo(false);
-      return navigate("/dashboard");
-    } else {
-      setInvalidInfo(true);
+      const data: IUser = await res.json();
+      console.log(data);
+      if (data.valid) {
+        setLoggedIn(true);
+        setUserInfo(data);
+        setInvalidInfo(false);
+        return navigate("/dashboard");
+      } else {
+        setInvalidInfo(true);
+      }
+    } catch (e) {
+      console.log(`Error: ${e}`);
     }
   };
 
+  //INPUT HANDLER
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUserInuput({
       ...userInput,
       [e.target.name]: e.target.value,
     });
+  };
+
+  //TOGGLE PASSWORD VIEW
+  const togglePassword = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const passwordBox = document.querySelector("#passwordBox");
+    if (passwordBox) {
+      const type =
+        passwordBox.getAttribute("type") === "password" ? "text" : "password";
+      passwordBox.setAttribute("type", type);
+    }
+    const eye3 = document.querySelector("#eye3");
+    if (eye3) {
+      if (eye3.classList.contains("fa-eye-slash")) {
+        eye3.classList.remove("fa-eye-slash");
+      } else {
+        eye3.classList.toggle("fa-eye-slash");
+      }
+    }
   };
 
   return (
@@ -81,14 +102,22 @@ const LoginPage: React.FC<IProps> = ({
           className="form-control"
         />
         <br />
-        <div>Password:</div>
-        <input
-          type="text"
-          name="password"
-          value={userInput.password}
-          onChange={inputHandler}
-          className="form-control"
-        />
+        <div id="loginPasswordBox">
+          <div>Password:</div>
+          <input
+            type="password"
+            name="password"
+            id="passwordBox"
+            value={userInput.password}
+            onChange={inputHandler}
+            className="form-control"
+          />
+          <i
+            className={`fa-solid fa-eye fa-eye-slash`}
+            id="eye3"
+            onClick={togglePassword}
+          />
+        </div>
         <br />
         {invalidInfo && (
           <div>
@@ -96,7 +125,9 @@ const LoginPage: React.FC<IProps> = ({
             <br />
           </div>
         )}
-        <button className="btn btn-primary" onClick={login}>Login</button>
+        <button className="btn btn-primary" onClick={login}>
+          Login
+        </button>
       </div>
     </CardWrapper>
   );

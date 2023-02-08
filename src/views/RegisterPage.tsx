@@ -45,7 +45,7 @@ const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
     }
   }, [userInput]);
 
-  //HELPER FUNCTIONS
+  //REGISTER USER
   const register = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
@@ -67,6 +67,7 @@ const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
     }
   };
 
+	//INPUT HANDLER
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUserInuput({
       ...userInput,
@@ -74,6 +75,7 @@ const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
     });
   };
 
+	//TOGGLE PASSWORD VIEW
   const togglePassword1 = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const password1 = document.querySelector("#password1");
     if (password1) {
@@ -91,6 +93,7 @@ const RegisterPage: React.FC<IProps> = ({ setLoggedIn, setUserInfo }) => {
     }
   };
 
+	//TOGGLE PASSWORD VIEW
   const togglePassword2 = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const password2 = document.querySelector("#password2");
     if (password2) {

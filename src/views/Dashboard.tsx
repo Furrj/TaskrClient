@@ -6,6 +6,7 @@ import { reqRoutes } from "../utils/reqRoutes";
 import CardWrapper from "../layouts/CardWrapper";
 
 import { IUser } from "../App";
+
 //TS
 interface IProps {
   userInfo: IUser;
@@ -25,6 +26,7 @@ const Dashboard: React.FC<IProps> = ({ userInfo }) => {
     console.log("UseEffect Triggered");
   }, []);
 
+	//GET USER DATA
   const fetchData = async (): Promise<void> => {
     try {
       const res = await fetch(`${reqRoutes()}/api`, {

@@ -14,6 +14,7 @@ interface IProps {
 }
 
 const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn, userName }) => {
+	//LOGOUT USER
   const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     setLoggedIn(false);
     setUserInfo(initState);

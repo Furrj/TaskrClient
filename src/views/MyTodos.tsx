@@ -7,6 +7,7 @@ import AddTodo from "../components/AddToDo";
 import Listings from "../components/Listings";
 import NewTodo from "../components/NewTodo";
 
+//TS
 interface IProps {
   userId: string;
 }
@@ -34,6 +35,7 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
     console.log("UseEffect Triggered");
   }, [rerender]);
 
+	//GET USER TODOS
   const fetchData = async (): Promise<void> => {
     try {
       const res = await fetch(`${reqRoutes()}/api`, {
@@ -56,10 +58,12 @@ const MyTodos: React.FC<IProps> = ({ userId }) => {
     }
   };
 
+	//TOGGLE ADDING MODE
   const toggleAdding = (): void => {
     setAddingTodo(!addingTodo);
   };
 
+	//FETCH DATA AGAIN
   const renderAgain = (): void => {
     setRerender(!rerender);
   };
